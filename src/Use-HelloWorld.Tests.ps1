@@ -13,8 +13,8 @@ Describe 'Use-HelloWorld' {
 
   It "Returns the proper output" {
     $result_param = Use-HelloWorld -Name 'Azure DevOps'
-    $result_param | Should -Be "Hello, Azure DevOps!"
+    $result_param | Should Be "Hello, Azure DevOps!"
     $result = Use-HelloWorld
-    $result | Should -Be "Hello, World!"
+    $result | Should Be "Hello, World!"
   }
 }
