@@ -7,5 +7,14 @@ pool:
   vmImage: 'vs2017-win2016'
 
 steps:
-- powershell: ./HelloWorld.ps1
-  displayName: 'Run a one-line script'
+  - powershell: ./Invoke-PesterAzureDevOps.ps1
+    displayName: 'Run pester'
+
+  - task: PublishTestResults@2
+    displayName: Publish Test Results
+    inputs:
+      testRunTitle: 'Test Results for Pester'
+      buildPlatform: 'Windows'
+      testRunner: 'NUnit'
+      testResultsFiles: './TEST-RESULTS.xml'
+      failTaskOnFailedTests: true # required to fail build when tests fail
